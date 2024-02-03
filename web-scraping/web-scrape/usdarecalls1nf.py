@@ -15,7 +15,7 @@ def viewUSDA():
     reason_ = []
     date_ = []
     summary_ = []
-
+    impacted_products_ = []
 
     page=0
     url = f"https://www.fsis.usda.gov/recalls?page={page}"
@@ -40,6 +40,8 @@ def viewUSDA():
                 date_.append(date)
                 summary = row.find('div', class_="recall-teaser__summary").text.replace('\n','')
                 summary_.append(summary)
-    return view_status, location2, teaser_title, reason, date, summary
+                impacted_products = row.find('div', class_="recall-teaser__products").text
+                impacted_products_.append(impacted_products)
+    return view_status, location2, teaser_title, reason, date, summary, impacted_products
 
 print(viewUSDA())
