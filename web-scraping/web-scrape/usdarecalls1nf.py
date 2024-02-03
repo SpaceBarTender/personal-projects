@@ -22,6 +22,7 @@ def viewUSDA():
             if "Active" in status and location is not None:
                 view_status = row.find('span', class_="tag tag--active").text
                 teaser_title = row.find('h3', class_='recall-teaser__title').text
-    return view_status, location, teaser_title
+                location2 = row.find('div', class_="recall-teaser__states").text
+    return view_status, location2, teaser_title
 
 print(viewUSDA())
