@@ -16,6 +16,9 @@ def viewUSDA():
     soup = bs(html, "lxml")
     view_content = soup.find('div', class_='view__content')
     view_rows = view_content.find_all('div', class_='view__row')
-    return view_rows
+    for row in view_rows:
+            status = row.find('div', class_="recall-teaser__status").text.replace('\n',' ')
+            location = row.find('div', class_="recall-teaser__states")
+    return status, location
 
 print(viewUSDA())
