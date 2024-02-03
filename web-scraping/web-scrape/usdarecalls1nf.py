@@ -14,7 +14,7 @@ def viewUSDA():
     location_ = []
     reason_ = []
     date_ = []
-
+    summary_ = []
 
 
     page=0
@@ -38,6 +38,8 @@ def viewUSDA():
                 location_.append(location2)
                 date = row.find('div', class_="recall-teaser__date").text.replace('\n','')
                 date_.append(date)
-    return view_status, location2, teaser_title, reason, date
+                summary = row.find('div', class_="recall-teaser__summary").text.replace('\n','')
+                summary_.append(summary)
+    return view_status, location2, teaser_title, reason, date, summary
 
 print(viewUSDA())
