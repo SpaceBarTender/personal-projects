@@ -12,6 +12,11 @@ def viewUSDA():
     status_ = []
     title_ = []
     location_ = []
+    reason_ = []
+
+
+
+
     page=0
     url = f"https://www.fsis.usda.gov/recalls?page={page}"
     response = requests.get(url)
@@ -27,8 +32,10 @@ def viewUSDA():
                 status_.append(status)
                 teaser_title = row.find('h3', class_='recall-teaser__title').text
                 title_.append(teaser_title)
+                reason = row.find('a', class_="tag tag--reason").text
+                reason_.append(reason)
                 location2 = row.find('div', class_="recall-teaser__states").text
                 location_.append(location2)
-    return view_status, location2, teaser_title
+    return view_status, location2, teaser_title, reason
 
 print(viewUSDA())
