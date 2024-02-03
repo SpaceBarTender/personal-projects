@@ -15,6 +15,7 @@ def viewUSDA():
     html = response.content
     soup = bs(html, "lxml")
     view_content = soup.find('div', class_='view__content')
-    return view_content
+    view_rows = view_content.find_all('div', class_='view__row')
+    return view_rows
 
 print(viewUSDA())
