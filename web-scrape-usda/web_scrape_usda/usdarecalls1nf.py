@@ -91,7 +91,7 @@ dfUSDA = viewUSDA()
 def ExplodeImpProds(wholeDf):  
 
     #Turns Impacted Products collection into isolated values
-    
+
     impProd_list = wholeDf['Impacted_Products'].tolist()
     new_list = []
     test = []
@@ -134,4 +134,4 @@ def ExplodeImpProds(wholeDf):
     wholeDf = wholeDf.explode("Impacted_Products")
     return wholeDf
 
-print(ExplodeImpProds(dfUSDA))
+explodedImpProds = ExplodeImpProds(dfUSDA)
