@@ -47,15 +47,15 @@ def viewUSDA():
                 link = row.find("a", href=re.compile("^(/recalls-alerts/)((?!:).)*$"))
                 link_.append(link)
 
-            print_all = print(f'''
-            Status:{status}
-            Date: {date}
-            Reason: {reason}
-            Title: {teaser_title}
-            Summary: {summary}
-            Impacted Products: {impacted_products_}
-            Link: https://www.fsis.usda.gov{link.attrs['href']}
-            ''')
+            # print_all = print(f'''
+            # Status:{status}
+            # Date: {date}
+            # Reason: {reason}
+            # Title: {teaser_title}
+            # Summary: {summary}
+            # Impacted Products: {impacted_products_}
+            # Link: https://www.fsis.usda.gov{link.attrs['href']}
+            # ''')
 
         page = page + 1
 
@@ -63,8 +63,21 @@ def viewUSDA():
     for link in link_:
         item = f"https://www.fsis.usda.gov{link.attrs['href']}"
         links.append(item)
-        
-                    
-    return print_all
+    
+    status_series = pd.Series(status_)
+    title_series = pd.Series(title_)
+    reason_series = pd.Series(reason_) 
+    date_series = pd.Series(date_)
+    impacted_products_series = pd.Series(impacted_products_)
+    link_series = pd.Series(links)
+    summary_series = pd.Series(summary_)
+    location_series = pd.Series(location_)
+
+
+    data_dictionary = {"Date" : date_series, "Status" : status_series, "Location": location_series, "Title" : title_series, "Reason" : reason_series, "Impacted_Products" : impacted_products_series, "Summary" : summary_series, "Link" : link_series}
+    wholeDf = pd.DataFrame(data=data_dictionary)
+    wholeDf["Location"] = wholeDf["Location"].fillna('')
+
+    return wholeDf
 
 print(viewUSDA())
