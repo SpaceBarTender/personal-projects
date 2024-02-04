@@ -9,6 +9,10 @@ import lxml
 from urllib.request import urlopen
 
 def viewUSDA():
+
+    # Get all data points over as many USDA pages as desired.
+    # Put all data points into lists and combine into dataframe
+    
     status_ = []
     title_ = []
     location_ = []
