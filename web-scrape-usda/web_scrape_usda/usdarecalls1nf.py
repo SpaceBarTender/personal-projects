@@ -11,8 +11,10 @@ from urllib.request import urlopen
 def viewUSDA():
 
     # Get all data points over as many USDA pages as desired.
-    # Put all data points into lists and combine into dataframe
-    
+    # Put all data points into lists and combine into dataframe.
+    # This dataframe is not yet in first normal form.
+    # Impacted Products and Location are collections of data, must transform df next.
+
     status_ = []
     title_ = []
     location_ = []
