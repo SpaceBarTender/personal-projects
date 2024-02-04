@@ -88,9 +88,11 @@ def viewUSDA():
 
 dfUSDA = viewUSDA()
 
-def ExplodeImpProds(wholeDf):  
+def transform1NF(wholeDf):  
 
-    #Turns Impacted Products collection into isolated values
+    # Turns Impacted Products collection into isolated values
+    # Same for Location
+    # Results in practically 1st Normal Form table (will set keys on Postgres)
 
     impProd_list = wholeDf['Impacted_Products'].tolist()
     new_list = []
@@ -132,6 +134,21 @@ def ExplodeImpProds(wholeDf):
     # df2["Impacted_Products"] = df2["Impacted_Products"].astype(str)
     # df2["type"] = type(df2['Impacted_Products'])
     wholeDf = wholeDf.explode("Impacted_Products")
+
+    location_list = wholeDf['Location'].tolist()
+    new_list = []
+    for str in location_list:
+        str1 = str.replace('\n          ', '')
+        str2 = str1.replace('\n', '')
+        str3 = str2.replace(' ', '')
+        list1 = str3.split(',')
+        new_list.append(list1)
+    wholeDf["location"] = pd.Series(new_list)
+    wholeDf = wholeDf.drop("Location", axis=1)
+    wholeDf = wholeDf.rename(columns={"location" : "Location"})
+    wholeDf = wholeDf.explode("Location")
+    wholeDf = wholeDf.reset_index(drop=True)
     return wholeDf
 
-explodedImpProds = ExplodeImpProds(dfUSDA)
+dfUSDA = transform1NF(dfUSDA)
+print(dfUSDA)
