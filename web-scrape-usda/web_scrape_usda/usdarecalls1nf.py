@@ -8,6 +8,7 @@ import re
 import lxml
 from urllib.request import urlopen
 
+
 def viewUSDA():
 
     # Get all data points over as many USDA pages as desired.
@@ -151,4 +152,5 @@ def transform1NF(wholeDf):
     return wholeDf
 
 dfUSDA = transform1NF(dfUSDA)
+
 print(dfUSDA)
