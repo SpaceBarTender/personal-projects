@@ -19,7 +19,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
 );
 """)
 
-# conn.commit()
+conn.commit()
 
 # cur.close()
 # conn.close()
