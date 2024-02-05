@@ -153,4 +153,5 @@ def transform1NF(wholeDf):
 
 dfUSDA = transform1NF(dfUSDA)
 
+print(dfUSDA.info())
 print(dfUSDA)
