@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+# CREDIT TO: techsapphire's video at https://www.youtube.com/watch?v=X3KxjuVe-mk&t=74s
 # Create example hierarchy dict
 data = {
         'id': [1,2,3,4,5],
@@ -21,23 +21,29 @@ df['level'] = pd.Series()
 
 
 def getLevel(mgrid):
+    # Returns when no more children are available
     if(len(df[df['parent_id'] == mgrid])==0):
 
         return
     else:
+        # Get all direct children
         childs=df[df['parent_id'] == mgrid]
 
+        # Get current row
         row=df[df['id'] == mgrid]
 
+        # Get current row level
         rowlevel=(row.iloc[0,len(df['id'])-2])
         if rowlevel=='':
 
+            # If root level, assign same id
             df.loc[df['id']==mgrid,'level'] = str(mgrid)
             rowlevel=str(mgrid)
             
         
         for ind in childs.index:
             empid=childs['id'][ind]
+            # Build bread crumb of unit ids
             df.loc[df['id'] == empid, 'level'] = str(rowlevel) + '-' + str(childs['Name'][ind]) + '-' + str(childs['Name'][ind]) + '-' +  str(empid)
             getLevel(childs['id'][ind])
 
