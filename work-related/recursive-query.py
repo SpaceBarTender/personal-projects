@@ -44,7 +44,7 @@ def getLevel(mgrid):
         for ind in childs.index:
             empid=childs['id'][ind]
             # Build bread crumb of unit ids
-            df.loc[df['id'] == empid, 'level'] = str(rowlevel) + '-' + str(childs['Name'][ind]) + '-' + str(childs['Name'][ind]) + '-' +  str(empid)
+            df.loc[df['id'] == empid, 'level'] = str(rowlevel) + '-' + str(childs['Name'][ind]) + '-' +  str(empid)
             getLevel(childs['id'][ind])
 
 getLevel(1)
