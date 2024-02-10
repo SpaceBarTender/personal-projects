@@ -18,3 +18,25 @@ df['parent_id'] = df['parent_id'].astype(int)
 
 # Will use recursive function to fill level column
 df['level'] = pd.Series()
+
+
+def getLevel(mgrid):
+    if(len(df[df['parent_id'] == mgrid])==0):
+
+        return
+    else:
+        childs=df[df['parent_id'] == mgrid]
+
+        row=df[df['id'] == mgrid]
+
+        rowlevel=(row.iloc[0,len(df['id'])-2])
+        if rowlevel=='':
+
+            df.loc[df['id']==mgrid,'level'] = str(mgrid)
+            rowlevel=str(mgrid)
+            
+        
+        for ind in childs.index:
+            empid=childs['id'][ind]
+            df.loc[df['id'] == empid, 'level'] = str(rowlevel) + '-' + str(childs['Name'][ind]) + '-' + str(childs['Name'][ind]) + '-' +  str(empid)
+            getLevel(childs['id'][ind])
