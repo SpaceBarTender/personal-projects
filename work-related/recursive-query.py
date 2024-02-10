@@ -34,6 +34,7 @@ def getLevel(mgrid):
 
         # Get current row level
         rowlevel=(row.iloc[0,len(df['id'])-2])
+        
         if rowlevel=='':
 
             # If root level, assign same id
@@ -49,3 +50,10 @@ def getLevel(mgrid):
 
 getLevel(1)
 print(df)
+
+RETURN_VALUE = """   id          Name  parent_id                                 level
+0   1   grandfather          0                                   NaN
+1   2        father          1                          nan-father-2
+2   3        child1          2                 nan-father-2-child1-3
+3   4        child2          2                 nan-father-2-child2-4
+4   5  someone else          3  nan-father-2-child1-3-someone else-5"""
