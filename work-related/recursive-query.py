@@ -57,3 +57,47 @@ RETURN_VALUE = """   id          Name  parent_id                                
 2   3        child1          2                 nan-father-2-child1-3
 3   4        child2          2                 nan-father-2-child2-4
 4   5  someone else          3  nan-father-2-child1-3-someone else-5"""
+
+
+COMPLICATED_CASE = """data = {
+        'id': [1,2,3,4,5],
+        'UIC' : ['DJ8000', 'FF1WF0', 'DJ8294', 'FFCMF0', 'DJ8WMD'],
+        'Name': ['HQSTRATOCOM','AFGSC','CTG 114','NRT 3', 'someone else'],
+        'METTaskNumber' : ['SN 3.2.7', 'ST 4', 'SN 5.2.3.1', 'AFOP 1.2.3', 'ST 5'],
+        'OPR': ['JQ/J35', 'JGSOC', 'NAOC', 'NAOC NRT', 'ELSE'],
+        'parent_id': [0, 1,2,2,3],
+        'SupportingMETOPR' : [None, 'JQ/J35','JGSOC','JGSOC','NAOC'],
+        'SupportingMETUIC' : [None, 'DJ8000', 'FF1WF0', 'FF1WF0', 'DJ8294']
+    }
+df = pd.DataFrame.from_dict(data)
+df = df.replace(np.nan,'',regex=True)
+df['id'] = df['id'].astype(int)
+df['parent_id'] = df['parent_id'].astype(int)
+
+df['level'] = pd.Series()
+
+
+def getLevel(mgrid):
+    if(len(df[df['parent_id'] == mgrid])==0):
+
+        return
+    else:
+        childs=df[df['parent_id'] == mgrid]
+
+        row=df[df['id'] == mgrid]
+
+        rowlevel=(row.iloc[0,len(df['id'])-2])
+        if rowlevel=='':
+
+            df.loc[df['id']==mgrid,'level'] = str(mgrid)
+            rowlevel=str(mgrid)
+            
+        
+        for ind in childs.index:
+            empid=childs['id'][ind]
+            df.loc[df['id'] == empid, 'level'] = str(rowlevel) + ':' + str(childs['UIC'][ind]) + ':' + str(childs['METTaskNumber'][ind]) + '-' +  str(empid)
+            getLevel(childs['id'][ind])
+
+getLevel(1)
+print(df)
+"""
