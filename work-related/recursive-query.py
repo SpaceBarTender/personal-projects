@@ -40,3 +40,6 @@ def getLevel(mgrid):
             empid=childs['id'][ind]
             df.loc[df['id'] == empid, 'level'] = str(rowlevel) + '-' + str(childs['Name'][ind]) + '-' + str(childs['Name'][ind]) + '-' +  str(empid)
             getLevel(childs['id'][ind])
+
+getLevel(1)
+print(df)
