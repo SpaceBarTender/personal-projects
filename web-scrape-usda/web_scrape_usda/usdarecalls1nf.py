@@ -91,9 +91,14 @@ dfUSDA = viewUSDA()
 
 def transform1NF(wholeDf):  
 
-    # Turns Impacted Products collection into isolated values
-    # Same for Location
-    # Results in practically 1st Normal Form table (will set keys on Postgres)
+    # Turns Impacted Products and Location collection rows into isolated values
+    # by exploding on set delimiter.
+    # Turn collection Date col into two cols, one called StartDate for actual
+    # date in datetime type, other in str type called DateStatus.
+    # Results in 1st Normal Form table (will set keys on Postgres).
+
+
+    # Transform, split, and remove date col first
     dates = dfUSDA['Date'].tolist()
     new_dates = []
     
@@ -107,6 +112,8 @@ def transform1NF(wholeDf):
     wholeDf['DateStatus'] = pd.Series(new_dates2)
     wholeDf = wholeDf.drop('Date', axis=1)
 
+
+    # Transform and explode impacted products
     impProd_list = wholeDf['Impacted_Products'].tolist()
     new_list = []
     test = []
@@ -128,10 +135,8 @@ def transform1NF(wholeDf):
             list2.append(item2)
         new_list.append(list2)
         test.append(str6)
-    # new_list2 = [] FOR LEGNTH OF LIST VALUES
-    # for li in new_list:
-    #     lngth = len(li)
-    #     new_list2.append(lngth)
+
+
     new_list3 = []
     for li in new_list:
         li2 = list(itertools.filterfalse(lambda x: x== ' ', li))
@@ -139,15 +144,14 @@ def transform1NF(wholeDf):
         li4 = list(itertools.filterfalse(lambda x: x== '"', li3))
         li5 = list(itertools.filterfalse(lambda x: x== '  ', li4))
         new_list3.append(li5)
-    # print(list2) FOR LENGTH OF LIST VALUES
-    # df2["Len_List"] = pd.Series(new_list2)
+   
     wholeDf["impacted_products"] = pd.Series(new_list3)
     wholeDf = wholeDf.drop("Impacted_Products", axis=1)
     wholeDf = wholeDf.rename(columns={"impacted_products" : "Impacted_Products"})
-    # df2["Impacted_Products"] = df2["Impacted_Products"].astype(str)
-    # df2["type"] = type(df2['Impacted_Products'])
+
     wholeDf = wholeDf.explode("Impacted_Products")
 
+    # Transform and explode location col
     location_list = wholeDf['Location'].tolist()
     new_list = []
     for str in location_list:
