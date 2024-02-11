@@ -94,6 +94,18 @@ def transform1NF(wholeDf):
     # Turns Impacted Products collection into isolated values
     # Same for Location
     # Results in practically 1st Normal Form table (will set keys on Postgres)
+    dates = dfUSDA['Date'].tolist()
+    new_dates = []
+    
+    for date in dates:
+        date2 = date.replace(' ', '')
+        date3 = date2.replace(date2[:4], '')
+        new_dates.append(date3)
+    split_items = (i.split('-') for i  in new_dates)
+    new_dates, new_dates2 = zip(*split_items)
+    wholeDf['StartDate'] = pd.to_datetime(pd.Series(new_dates))
+    wholeDf['DateStatus'] = pd.Series(new_dates2)
+    wholeDf = wholeDf.drop('Date', axis=1)
 
     impProd_list = wholeDf['Impacted_Products'].tolist()
     new_list = []
@@ -149,6 +161,7 @@ def transform1NF(wholeDf):
     wholeDf = wholeDf.rename(columns={"location" : "Location"})
     wholeDf = wholeDf.explode("Location")
     wholeDf = wholeDf.reset_index(drop=True)
+  
     return wholeDf
 
 dfUSDA = transform1NF(dfUSDA)
