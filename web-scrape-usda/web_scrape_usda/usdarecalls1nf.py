@@ -169,7 +169,8 @@ def transform1NF(wholeDf):
     return wholeDf
 
 dfUSDA = transform1NF(dfUSDA)
-dfUSDA = dfUSDA.rename(columns = {"Status" : "RecallStatus", "Impacted_Products" : "ImpactedProducts"})
+dfUSDA.columns = [x.lower() for x in dfUSDA.columns]
+dfUSDA = dfUSDA.rename(columns = {"startdate" : "start_date", "datestatus" : "date_status", "status" : "recall_status"})
 print(dfUSDA.info())
 # print(dfUSDA.info())
 # print(dfUSDA)

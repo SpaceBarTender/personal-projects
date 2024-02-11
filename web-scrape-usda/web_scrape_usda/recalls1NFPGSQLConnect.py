@@ -23,7 +23,10 @@ cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
 );
 """)
 
-# #create engine dialect+driver://username:password@server/database
+cur.close()
+conn.close()
+
+#create engine dialect+driver://username:password@server/database
 # engine = create_engine('postgresql+psycopg2://postgres:41998@localhost/postgres')
 # print(engine)
 
