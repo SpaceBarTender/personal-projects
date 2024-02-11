@@ -11,14 +11,13 @@ cur = conn.cursor()
 cur.execute("""DROP TABLE IF EXISTS recalls1nf""")
 cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
             id SERIAL PRIMARY KEY,
-            Status VARCHAR (10),
-            StartDate DATE,
-            DateStatus VARCHAR(10),
             RecallStatus VARCHAR(10),
             Title VARCHAR(100),
             Reason VARCHAR(100),
             Summary VARCHAR(1000),
             Link VARCHAR(200),
+            StartDate DATE,
+            DateStatus VARCHAR(10),
             ImpactedProducts VARCHAR(1000),
             Location VARCHAR(100)
 );
