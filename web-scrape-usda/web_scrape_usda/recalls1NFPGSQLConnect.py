@@ -1,5 +1,6 @@
 from usdarecalls1nf import dfUSDA
 import psycopg2
+import sqlalchemy
 
 conn = psycopg2.connect(host="localhost", dbname="postgres", user="postgres",
                          password='41998', port=5432)

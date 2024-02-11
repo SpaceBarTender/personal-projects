@@ -10,6 +10,7 @@ numpy = "*"
 lxml = "*"
 requests = "*"
 psycopg2 = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
