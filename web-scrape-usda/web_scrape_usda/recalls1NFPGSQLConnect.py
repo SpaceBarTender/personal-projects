@@ -1,7 +1,11 @@
 from usdarecalls1nf import dfUSDA
 import psycopg2
-import sqlalchemy
+from sqlalchemy import create_engine
 from psycopg2.extras import execute_values
+
+#create engine dialect+driver://username:password@server/database
+engine = create_engine('postgresql+psycopg2://postgres:41998@localhost/postgres')
+print(engine)
 
 # conn = psycopg2.connect(host="localhost", dbname="postgres", user="postgres",
 #                          password='41998', port=5432)
