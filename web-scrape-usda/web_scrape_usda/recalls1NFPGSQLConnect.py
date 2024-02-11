@@ -9,6 +9,7 @@ cur = conn.cursor()
 cur.execute("""DROP TABLE IF EXISTS recalls1nf""")
 cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
             id SERIAL PRIMARY KEY,
+            status VARCHAR (10),
             start_date DATE,
             date_status VARCHAR(10),
             recall_status VARCHAR(10),
@@ -21,6 +22,11 @@ cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
 );
 """)
 
+# for row in dfUSDA.iterrows():
+#     cur.execute("""INSERT INTO recalls1nf (Satus, Title, Reason, Summary, Link, StartDate, DateStatus, Impacted_Products, Location)
+#                 VALUES ()""")
+
+   
 conn.commit()
 
 # cur.close()
