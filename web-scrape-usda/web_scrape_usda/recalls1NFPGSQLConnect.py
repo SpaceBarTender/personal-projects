@@ -9,8 +9,8 @@ cur.execute("""DROP TABLE IF EXISTS recalls1nf""")
 cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
             id INT PRIMARY KEY,
             start_date DATE,
-            date_States VARCHAR(10),
-            status VARCHAR(10),
+            date_status VARCHAR(10),
+            recall_status VARCHAR(10),
             title VARCHAR(100),
             reason VARCHAR(100),
             summary VARCHAR(1000),
