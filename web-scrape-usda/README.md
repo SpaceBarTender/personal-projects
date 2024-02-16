@@ -25,9 +25,9 @@ PostgreSQL in Python Crash Course: https://www.youtube.com/watch?v=miEFm1CyjfM
 
 Save Pandas Dataframes and CSVs directly to PostgreSQL Database (Must Know Skill in Data Fields): https://www.youtube.com/watch?v=beAQg-dugBI
 
-Normalization by Osmosis (p.1): :https://www.cybertec-postgresql.com/en/data-normalization-in-postgresql/
+Data Normalization in PostgreSQL, Normalization by Osmosis (p.1): :https://www.cybertec-postgresql.com/en/data-normalization-in-postgresql/
 
-Normalization by Osmosis (p.2):https://www.cybertec-postgresql.com/en/practical-examples-data-normalization-in-postgresql/
+Data Normalization in PostgreSQL, Normalization by Osmosis (p.2):https://www.cybertec-postgresql.com/en/practical-examples-data-normalization-in-postgresql/
 
 Primary Keys Vs Unique Constraints in PostgreSQL: https://www.cybertec-postgresql.com/en/primary-keys-vs-unique-constraints-in-postgresql/
 
