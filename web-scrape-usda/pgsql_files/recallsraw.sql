@@ -13,6 +13,9 @@ CREATE TABLE locations (location_id SERIAL, location VARCHAR, PRIMARY KEY(locati
 SELECT DISTINCT location FROM recallsraw;
 INSERT INTO locations (location) SELECT DISTINCT location from recallsraw;
 
+UPDATE recallsraw
+SET location_id = (SELECT locations.location_id FROM locations WHERE locations.location = recallsraw.location);
+
 DROP TABLE IF EXISTS impacted_products;
 CREATE TABLE impacted_products (impacted_product_id SERIAL, impacted_product VARCHAR, PRIMARY KEY(impacted_product_id));
 SELECT DISTINCT impacted_product FROM recallsraw;
