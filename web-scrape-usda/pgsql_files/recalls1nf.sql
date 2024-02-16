@@ -16,4 +16,3 @@ CREATE TABLE recalls1nf (
             location VARCHAR,
 			UNIQUE (recall_id)
 );
-
