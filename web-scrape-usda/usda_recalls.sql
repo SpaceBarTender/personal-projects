@@ -1,5 +1,4 @@
-SELECT (CASE WHEN impacted_products IS NULL THEN
-	   'None given'
-	   ELSE
-	   impacted_products
-	   END) FROM recalls1nf;
+UPDATE recalls1nf
+SET impacted_products = 'None given'
+WHERE impacted_products IS NULL;
+       
