@@ -21,5 +21,12 @@ CREATE TABLE impacted_products (impacted_product_id SERIAL, impacted_product VAR
 SELECT DISTINCT impacted_product FROM recallsraw;
 INSERT INTO impacted_products (impacted_product) SELECT DISTINCT impacted_product FROM recallsraw;
 
+ALTER TABLE recallsraw
+ADD COLUMN impacted_product_id INT;
+
+UPDATE recallsraw
+SET impacted_product_id = (SELECT locations.location_id FROM locations WHERE locations.location = recallsraw.location);
+
+
 -- ALTER TABLE recalls1nf
 -- ADD PRIMARY KEY (recall_id, impacted_products, location); -- Officially set to First Normal Form
