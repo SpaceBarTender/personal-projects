@@ -19,6 +19,8 @@ Darabasing:
 
 Sources for education:
 
+PostgreSQL Demonstration: Loading and Normalizing CSV Data: https://youtu.be/L3FgCZnYvSE?si=qwpcExKOi0doHU_O
+
 Database Normalisation Tutorial: https://phlonx.com/resources/nf3/
 
 PostgreSQL in Python Crash Course: https://www.youtube.com/watch?v=miEFm1CyjfM

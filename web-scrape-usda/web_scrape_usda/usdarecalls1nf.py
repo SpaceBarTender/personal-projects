@@ -81,7 +81,7 @@ def viewUSDA():
     location_series = pd.Series(location_)
 
 
-    data_dictionary = {"Date" : date_series, "Status" : status_series, "Location": location_series, "Title" : title_series, "Reason" : reason_series, "Impacted_Products" : impacted_products_series, "Summary" : summary_series, "Link" : link_series}
+    data_dictionary = {"Date" : date_series, "Status" : status_series, "Location": location_series, "Title" : title_series, "Reason" : reason_series, "Impacted_Product" : impacted_products_series, "Summary" : summary_series, "Link" : link_series}
     wholeDf = pd.DataFrame(data=data_dictionary)
     wholeDf["Location"] = wholeDf["Location"].fillna('')
     wholeDf['recall_id'] = range(1, len(wholeDf) + 1)
@@ -114,7 +114,7 @@ def transform1NF(wholeDf):
 
 
     # Transform and explode impacted products
-    impProd_list = wholeDf['Impacted_Products'].tolist()
+    impProd_list = wholeDf['Impacted_Product'].tolist()
     new_list = []
     test = []
     for str in impProd_list:
@@ -145,11 +145,11 @@ def transform1NF(wholeDf):
         li5 = list(itertools.filterfalse(lambda x: x== '  ', li4))
         new_list3.append(li5)
    
-    wholeDf["impacted_products"] = pd.Series(new_list3)
-    wholeDf = wholeDf.drop("Impacted_Products", axis=1)
-    wholeDf = wholeDf.rename(columns={"impacted_products" : "Impacted_Products"})
+    wholeDf["impacted_product"] = pd.Series(new_list3)
+    wholeDf = wholeDf.drop("Impacted_Product", axis=1)
+    wholeDf = wholeDf.rename(columns={"impacted_product" : "Impacted_Product"})
 
-    wholeDf = wholeDf.explode("Impacted_Products")
+    wholeDf = wholeDf.explode("Impacted_Product")
 
     # Transform and explode location col
     location_list = wholeDf['Location'].tolist()
