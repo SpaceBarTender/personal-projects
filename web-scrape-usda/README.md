@@ -3,6 +3,7 @@
 ## USDA Food recalls database reverse engineering
 
 Python:
+    - Dependency management with Pipfiles
     - Web scraping using beautifulsoup4
     - Data transformation using Pandas
 
