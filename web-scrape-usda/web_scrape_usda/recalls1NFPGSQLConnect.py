@@ -10,7 +10,7 @@ conn = psycopg2.connect(host="localhost", dbname="postgres", user="postgres",
 cur = conn.cursor()
 cur.execute("""DROP TABLE IF EXISTS recalls1nf""")
 cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
-            id SERIAL PRIMARY KEY,
+            recall_id INT,
             recall_status VARCHAR,
             title VARCHAR,
             reason VARCHAR,
