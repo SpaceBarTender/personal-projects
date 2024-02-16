@@ -22,9 +22,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS recallsraw (
             link VARCHAR,
             start_date DATE,
             date_status VARCHAR,
-            impacted_product_id INT,
             impacted_product VARCHAR,
-            location_id INT,
             location VARCHAR
 );
 """)
