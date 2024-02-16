@@ -8,8 +8,9 @@ conn = psycopg2.connect(host="localhost", dbname="postgres", user="postgres",
                          password='41998', port=5432)
 
 cur = conn.cursor()
-cur.execute("""DROP TABLE IF EXISTS recalls1nf""")
-cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
+cur.execute("""DROP TABLE IF EXISTS recallsraw""")
+cur.execute("""CREATE TABLE IF NOT EXISTS recallsraw (
+            sur_key SERIAL,
             recall_id INT,
             recall_status VARCHAR,
             title VARCHAR,
@@ -18,7 +19,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
             link VARCHAR,
             start_date DATE,
             date_status VARCHAR,
-            impacted_products VARCHAR DEFAULT 'No value',
+            impacted_product VARCHAR DEFAULT 'No value',
             location VARCHAR
 );
 """)
@@ -31,7 +32,7 @@ engine = create_engine('postgresql+psycopg2://postgres:41998@localhost/postgres'
 print(engine)
 
 #df.to_sql methods: append, fail, replace
-dfUSDA.to_sql('recalls1nf', engine, if_exists='append', index=False)
+dfUSDA.to_sql('recallsraw', engine, if_exists='append', index=False)
    
 
 
