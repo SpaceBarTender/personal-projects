@@ -1,1 +1,2 @@
-SELECT recall_status FROM recalls1nf;
+ALTER TABLE recalls1nf
+DROP CONSTRAINT recalls1nf_pkey;
