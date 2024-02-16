@@ -16,3 +16,8 @@ CREATE TABLE recalls1nf (
             location VARCHAR,
 			UNIQUE (recall_id)
 );
+
+UPDATE recalls1nf 
+SET location_id = (SELECT locations.location_id FROM locations WHERE locations.location = recalls1nf.location);
+
+SELECT * FROM recalls1nf;
