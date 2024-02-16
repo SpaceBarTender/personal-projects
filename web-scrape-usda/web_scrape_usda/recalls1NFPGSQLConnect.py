@@ -4,6 +4,9 @@ from sqlalchemy import create_engine
 from psycopg2.extras import execute_values
 import pandas as pd
 
+# TODO: FIGURE OUT WHERE ACTUAL IDS SHOULD BE- RECALLS TAKE ARE SOURCED FROM
+# FACILITY AND APPLY TO ALL IMPACTED PRODUCTS, RECALLID-IMPPROD-ID-IMPROD
+
 conn = psycopg2.connect(host="localhost", dbname="postgres", user="postgres",
                          password='41998', port=5432)
 
@@ -19,7 +22,9 @@ cur.execute("""CREATE TABLE IF NOT EXISTS recallsraw (
             link VARCHAR,
             start_date DATE,
             date_status VARCHAR,
-            impacted_product VARCHAR DEFAULT 'No value',
+            impacted_product_id INT,
+            impacted_product VARCHAR,
+            location_id INT,
             location VARCHAR
 );
 """)
