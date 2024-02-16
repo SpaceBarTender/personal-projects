@@ -84,7 +84,7 @@ def viewUSDA():
     data_dictionary = {"Date" : date_series, "Status" : status_series, "Location": location_series, "Title" : title_series, "Reason" : reason_series, "Impacted_Products" : impacted_products_series, "Summary" : summary_series, "Link" : link_series}
     wholeDf = pd.DataFrame(data=data_dictionary)
     wholeDf["Location"] = wholeDf["Location"].fillna('')
-
+    wholeDf['recall_id'] = range(1, len(wholeDf) + 1)
     return wholeDf
 
 dfUSDA = viewUSDA()
@@ -171,6 +171,6 @@ def transform1NF(wholeDf):
 dfUSDA = transform1NF(dfUSDA)
 dfUSDA.columns = [x.lower() for x in dfUSDA.columns]
 dfUSDA = dfUSDA.rename(columns = {"startdate" : "start_date", "datestatus" : "date_status", "status" : "recall_status"})
-print(dfUSDA.info())
+# print(dfUSDA)
 # print(dfUSDA.info())
 # print(dfUSDA)
