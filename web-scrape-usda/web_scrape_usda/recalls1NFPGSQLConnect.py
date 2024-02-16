@@ -18,7 +18,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS recalls1nf (
             link VARCHAR,
             start_date DATE,
             date_status VARCHAR,
-            impacted_products VARCHAR,
+            impacted_products VARCHAR DEFAULT 'No value',
             location VARCHAR
 );
 """)
