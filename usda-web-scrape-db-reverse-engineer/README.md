@@ -1,6 +1,6 @@
 # Skills displayed
 
-## USDA Food recalls database reverse engineering
+## USDA Food Recalls Database Reverse Engineering
 
 Python:
     - Dependency management with Pipfiles
