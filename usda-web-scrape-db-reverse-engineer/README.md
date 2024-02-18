@@ -13,7 +13,6 @@ SQL:
     - Queries
 
 Darabasing:
-    - Thoughtful use of natrual and surrogate keys
     - Normalization into 3rd normal form
     - Null handling
 
