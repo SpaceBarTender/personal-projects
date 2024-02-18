@@ -5,16 +5,25 @@
 
 Python:
     - Dependency management with Pipfiles
+
     - Web scraping using beautifulsoup4
+
     - Data transformation using Pandas
+
+    - Connecting to PostgreSQL data base using psycopg2 and SQL Alchemy
+
+    - Feeding dataframes into PostgreSQL tables using SQL Alchemy
 
 SQL:
     - Data Definition Language
+
     - Data Manipuation Language
+
     - Queries
 
 Darabasing:
     - Normalization into 3rd normal form
+    
     - Null handling
 
 Sources for education:
