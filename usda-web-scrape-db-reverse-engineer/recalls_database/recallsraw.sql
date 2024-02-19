@@ -30,5 +30,16 @@ INSERT INTO recall_titles (recall_title) SELECT DISTINCT recall_title FROM recal
 UPDATE recallsraw
 SET recall_title_id = (SELECT recall_titles.recall_title_id FROM recall_titles WHERE recall_titles.recall_title = recallsraw.recall_title);
 
+-- Create reasons table and insert reason id into recallsraw
+ALTER TABLE recallsraw
+ADD COLUMN reason_id VARCHAR;
+
+DROP TABLE IF EXISTS reasons;
+CREATE TABLE reasons (reason_id SERIAL, reason VARCHAR, PRIMARY KEY (reason_id));
+SELECT DISTINCT reason FROM recallsraw;
+INSERT INTO reasons (reason) SELECT DISTINCT reason FROM recallsraw;
+
+UPDATE recallsraw
+SET reason_id = (SELECT reasons.reason_id FROM reasons WHERE recallsraw.reason = reasons.reason);
 
 SELECT * FROM recallsraw
