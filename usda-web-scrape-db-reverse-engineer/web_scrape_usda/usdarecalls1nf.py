@@ -84,7 +84,7 @@ def viewUSDA():
     data_dictionary = {"Date" : date_series, "Status" : status_series, "Location": location_series, "Title" : title_series, "Reason" : reason_series, "Impacted_Product" : impacted_products_series, "Summary" : summary_series, "Link" : link_series}
     wholeDf = pd.DataFrame(data=data_dictionary)
     wholeDf["Location"] = wholeDf["Location"].fillna('')
-    wholeDf['recall_id'] = range(1, len(wholeDf) + 1)
+    
     return wholeDf
 
 dfUSDA = viewUSDA()
