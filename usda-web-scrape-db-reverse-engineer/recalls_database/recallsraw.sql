@@ -7,13 +7,6 @@ ADD COLUMN location_id INT;
 
 SELECT * FROM recallsraw;
 
-DROP TABLE IF EXISTS locations;
-CREATE TABLE locations (location_id SERIAL, location VARCHAR, PRIMARY KEY(location));
-SELECT DISTINCT location FROM recallsraw;
-INSERT INTO locations (location) SELECT DISTINCT location from recallsraw;
-
-UPDATE recallsraw
-SET location_id = (SELECT locations.location_id FROM locations WHERE locations.location = recallsraw.location);
 
 ALTER TABLE recallsraw
 ADD COLUMN impacted_product_id INT;
