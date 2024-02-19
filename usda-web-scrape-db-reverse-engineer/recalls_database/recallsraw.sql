@@ -18,4 +18,17 @@ UPDATE recallsraw
 SET impacted_product_id = (SELECT impacted_products.impacted_product_id FROM impacted_products WHERE impacted_products.impacted_product = recallsraw.impacted_product);
 
 
+-- Make title table, insesrt title id to recallsraw
+ALTER TABLE recallsraw 
+ADD COLUMN recall_title_id INT;
+
+DROP TABLE IF EXISTS recall_titles;
+CREATE TABLE recall_titles (recall_title_id SERIAL, recall_title VARCHAR, PRIMARY KEY (recall_title_id));
+SELECT DISTINCT recall_title FROM recallsraw;
+INSERT INTO recall_titles (recall_title) SELECT DISTINCT recall_title FROM recallsraw;
+
+UPDATE recallsraw
+SET recall_title_id = (SELECT recall_titles.recall_title_id FROM recall_titles WHERE recall_titles.recall_title = recallsraw.recall_title);
+
+
 SELECT * FROM recallsraw
