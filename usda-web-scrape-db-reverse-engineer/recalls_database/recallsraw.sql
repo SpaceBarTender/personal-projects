@@ -1,11 +1,7 @@
+-- Handle null values
 UPDATE recallsraw
 SET impacted_product = 'None given'
 WHERE impacted_product IS NULL;
-
-ALTER TABLE recallsraw
-ADD COLUMN location_id INT;
-
-SELECT * FROM recallsraw;
 
 
 ALTER TABLE recallsraw
