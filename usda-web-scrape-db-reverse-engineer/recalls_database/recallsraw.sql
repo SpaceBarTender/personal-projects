@@ -3,7 +3,8 @@ UPDATE recallsraw
 SET impacted_product = 'None given'
 WHERE impacted_product IS NULL;
 
-
+-- Make impacted products table and insert
+-- impacted products id into recallsraw
 ALTER TABLE recallsraw
 ADD COLUMN impacted_product_id INT;
 
